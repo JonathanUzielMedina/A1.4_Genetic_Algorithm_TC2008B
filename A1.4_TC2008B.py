@@ -72,8 +72,18 @@ def seleccionarRuleta(poblacion: list, fitness_poblacion: list):
 def mutacion(t: int):
     pass
 
-def recombinar(t: int):
-    pass
+def recombinar(poblacion: list):
+    nueva = []
+    for i in range(p_size // 2):
+        p1 = poblacion[i].copy()
+        p2 = poblacion[p_size - 1 - i].copy()
+        punto_cruce = r.randint(1, p_binary-1)
+        h1 = p1[:punto_cruce] + p2[punto_cruce:]
+        h2 = p2[:punto_cruce] + p1[punto_cruce:]
+        nueva.append(h1)
+        nueva.append(h2)
+    poblacion = nueva[:p_size]
+    return p1,p2,h1,h2, punto_cruce, poblacion
 
 if __name__ == "__main__":
     print(f"\nPoblación inicial:\n\n{p_inicial2}\n")
@@ -86,6 +96,9 @@ if __name__ == "__main__":
     print(f"\nSelección por competencia:\n\n{seleccionarCompetencia(p_inicial2, fitness, 3)}\n")
     
     print(f"\nSelección por ruleta:\n\n{seleccionarRuleta(p_inicial2, fitness)}\n")
+
+
+    print(f"\nRecombinacion: {recombinar(1, p_inicial2, fitness)} \n")
     
     """
     t = 0
