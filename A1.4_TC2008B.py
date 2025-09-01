@@ -97,6 +97,6 @@ if __name__ == "__main__":
 """
 Referencias:
 
-- Huddar, M. [Mahesh Huddar]. (2024, 20 abril). Selection Operators Roulette wheel ranking tournament selection in genetic algorithm Mahesh Huddar [Video]. YouTube. https://www.youtube.com/watch?v=uRF7xSQwNeU
+- Huddar, M. [Mahesh Huddar]. (2024, 20 abril). Selection Operators Roulette wheel ranking tournament selection in genetic algorithm Mahesh Huddar [Video]. YouTube. Recuperado el 30 de agosto de 2025, de https://www.youtube.com/watch?v=uRF7xSQwNeU
 - NeuralNine. (2024, 2 abril). Genetic Algorithms in Python - Evolution for optimization [Video]. YouTube. Recuperado el 30 de agosto de 2025, de https://www.youtube.com/watch?v=CRtZ-APJEKI
 """
