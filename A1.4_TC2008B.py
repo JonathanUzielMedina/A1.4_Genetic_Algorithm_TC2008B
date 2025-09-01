@@ -1,3 +1,22 @@
+"""
+A1.4 Genetic Algorithms (GAs)
+
+Modelación de Sistemas Multiagentes y Gráficas Computacionales (TC2008B).
+
+Equipo:
+    - Jesús Felipe Bastidas Valenzuela (A01255206)
+    - Sebastián Blachet Sánchez (A00227588)
+    - Eduardo Cárdenas Valadez (A002332432)
+    - Jonathan Uziel Medina Rodríguez (A01255048)
+    - Araceli Ruiz Sánchez (A01255302)
+
+Docente: Dr. Edgar León Sandoval.
+
+Fecha de entrega: 1 de septiembre de 2025.
+________________________________________________________________________
+Descripción: Implementación del algoritmo genético.
+"""
+
 import numpy as np
 import random as r
 
@@ -17,33 +36,28 @@ def evaluar(poblacion):
     newP = sorted(poblacion, key=b2d, reverse=True)
     return newP
 
-# Seleccionar individuos por competencia (tournament selection).
-def seleccionarCompetencia(poblacion: list, fitness_poblacion: list, k: int):
+# Seleccionar un individuo por competencia (tournament selection).
+def seleccionarCompetencia(poblacion: list, fitness_poblacion: list, K: int):
     seleccion_temp = []     # Selección de genomas aleatorios.
     indices_usados = []     # Índices utilizados (para no repetirse en la aleatoriedad).
-    padres = []             # Padres (par de genomas más aptos).
 
-    for p in range(2):
-        for i in range(k):
-            idx = r.randint(0, len(poblacion)-1)
-            if idx not in indices_usados:
-                seleccion_temp.append((poblacion[idx], fitness_poblacion[idx]))
-                indices_usados.append(idx)
-            else:
-                while idx in indices_usados:
-                    idx = r.randint(0, len(poblacion)-1)
-                    if idx not in indices_usados:
-                        seleccion_temp.append((poblacion[idx], fitness_poblacion[idx]))
-                        indices_usados.append(idx)
-                        break
-        
-        padres.append(max(seleccion_temp)[0])   # Seleccionar el genoma más apto como uno de los padres.
-        indices_usados = []                     # Reiniciar lista de índices utilizados.
-
-    return padres
+    for i in range(K):
+        idx = r.randint(0, len(poblacion)-1)
+        if idx not in indices_usados:
+            seleccion_temp.append((poblacion[idx], fitness_poblacion[idx]))
+            indices_usados.append(idx)
+        else:
+            while idx in indices_usados:
+                idx = r.randint(0, len(poblacion)-1)
+                if idx not in indices_usados:
+                    seleccion_temp.append((poblacion[idx], fitness_poblacion[idx]))
+                    indices_usados.append(idx)
+                    break
+    padre = max(seleccion_temp)[0]  # Seleccionar el genoma más apto como padre.
+    return padre
 
 
-# Seleccionar individuos por ruleta.
+# Seleccionar un individuo por ruleta.
 def seleccionarRuleta(poblacion: list, fitness_poblacion: list):
     sumaFitness = sum(fitness_poblacion)
     numeroRandom = int(r.randint(0, sumaFitness))
